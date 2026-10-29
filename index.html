@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#101019" />
+  <title>ShowTime — Movie Tickets</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles1.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="ShowTime home"><span class="brand-mark">▶</span> show<span>time</span></a>
+    <nav class="nav-links"><a class="active" href="#home">Discover</a><a href="#movies">Movies</a><a href="#events">Events</a></nav>
+    <div class="top-actions"><label class="location"><span>⌖</span><select id="citySelect" aria-label="Choose city"><option>Chennai</option><option>Bengaluru</option><option>Hyderabad</option><option>Mumbai</option></select></label><button class="icon-btn" id="openBookings" title="My bookings" aria-label="My bookings">▣</button><button class="avatar" aria-label="Profile">N</button></div>
+  </header>
+  <main id="home">
+    <section class="hero wrap">
+      <div class="hero-copy"><span class="eyebrow"><span class="live-dot"></span> YOUR NEXT BIG SCREEN MOMENT</span><h1>Stories worth<br><em>stepping out for.</em></h1><p>Find your movie, pick your seats, and make a night of it.</p><div class="hero-actions"><a href="#movies" class="btn btn-primary">Explore movies <span>↗</span></a><button class="btn btn-ghost" id="heroHow">How it works <span>▶</span></button></div><div class="hero-social"><div class="mini-avatars"><span>R</span><span>A</span><span>K</span><span>+</span></div><div><strong>Made for movie people</strong><small>Easy booking. Better plans.</small></div></div></div>
+      <div class="hero-art"><div class="hero-glow"></div><div class="hero-poster poster-main"><div class="poster-tag">NOW SHOWING</div><div class="poster-title">BEYOND<br><span>THE STARS</span></div><div class="poster-bottom"><span>SCI-FI · ADVENTURE</span><span>★ 9.1</span></div></div><div class="floating-card"><span class="floating-icon">✦</span><div><strong>Your seat, your moment</strong><small>Book in a few taps</small></div></div><div class="art-spark spark-one">✦</div><div class="art-spark spark-two">✧</div></div>
+    </section>
+    <section class="search-wrap wrap"><div class="search-box"><span class="search-icon">⌕</span><input id="searchInput" type="search" placeholder="Search movies, genres, or events..." aria-label="Search movies"><div class="search-divider"></div><span class="filter-label">Genre</span><select id="genreSelect" aria-label="Filter by genre"><option value="all">All genres</option><option>Action</option><option>Drama</option><option>Comedy</option><option>Sci-Fi</option><option>Animation</option><option>Thriller</option></select><button id="searchBtn" class="search-btn">Search</button></div></section>
+    <section class="section wrap" id="movies"><div class="section-heading"><div><span class="eyebrow muted">PICK YOUR NEXT FAVOURITE</span><h2>Now showing <span class="heading-dot">.</span></h2></div><div class="tabs" role="tablist"><button class="tab active" data-filter="all">All movies</button><button class="tab" data-filter="trending">Trending</button><button class="tab" data-filter="top">Top rated</button></div></div><div class="movie-grid" id="movieGrid"></div><div class="empty-state hidden" id="emptyState">No movies found. Try another search or genre.</div></section>
+    <section class="event-banner wrap" id="events"><div class="event-orb">♫</div><div><span class="eyebrow">MORE THAN MOVIES</span><h2>Make room for a little <em>magic.</em></h2><p>Live shows, comedy nights, and experiences worth sharing.</p></div><button class="btn btn-light" id="exploreEvents">Explore events <span>↗</span></button></section>
+    <section class="section wrap events-section"><div class="section-heading"><div><span class="eyebrow muted">OUTSIDE THE CINEMA</span><h2>Happening near you</h2></div><span class="location-note">⌖ <span id="eventCity">Chennai</span></span></div><div class="event-grid" id="eventGrid"></div></section>
+  </main>
+  <footer class="footer"><a class="brand" href="#home"><span class="brand-mark">▶</span> show<span>time</span></a><p>Your plans. Your people. Your big-screen moments.</p><span>College project prototype · 2026</span></footer>
+
+  <div class="modal-backdrop hidden" id="bookingModal" role="dialog" aria-modal="true" aria-labelledby="bookingTitle"><div class="booking-modal"><button class="close-modal" id="closeBooking" aria-label="Close">×</button><div class="booking-head"><span class="eyebrow muted">YOUR MOVIE NIGHT STARTS HERE</span><h2 id="bookingTitle">Choose your seats</h2><p id="bookingMovieLine">Select a show and seats to continue.</p></div><div class="booking-layout"><div class="seat-panel"><div class="screen"><span>SCREEN THIS WAY</span></div><div class="seat-legend"><span><i class="legend-seat"></i> Available</span><span><i class="legend-seat booked-legend"></i> Occupied</span><span><i class="legend-seat selected-legend"></i> Selected</span></div><div class="seat-map" id="seatMap"></div><div class="seat-hint">Tap available seats to select them</div></div><aside class="booking-summary"><label class="field-label" for="showDate">Date</label><select id="showDate" class="field"><option>Today · Oct 29</option><option>Tomorrow · Oct 30</option><option>Sat · Oct 31</option><option>Sun · Nov 1</option></select><label class="field-label">Show time</label><div class="time-options" id="timeOptions"><button class="time-option active" data-time="10:30 AM">10:30 AM</button><button class="time-option" data-time="1:45 PM">1:45 PM</button><button class="time-option" data-time="6:15 PM">6:15 PM</button><button class="time-option" data-time="9:30 PM">9:30 PM</button></div><div class="summary-line"><span>Tickets <b id="ticketCount">0</b></span><strong id="ticketPrice">₹0</strong></div><div class="summary-line total-line"><span>Total amount</span><strong id="totalPrice">₹0</strong></div><button class="btn btn-primary confirm-btn" id="confirmBooking" disabled>Confirm booking <span>→</span></button><small class="demo-note">Demo only — no payment will be collected.</small></aside></div></div></div>
+  <div class="toast" id="toast" role="status"></div>
+  <div class="modal-backdrop hidden" id="myBookingsModal" role="dialog" aria-modal="true" aria-labelledby="myBookingsTitle"><div class="small-modal"><button class="close-modal" id="closeMyBookings" aria-label="Close">×</button><span class="eyebrow muted">YOUR PLANS</span><h2 id="myBookingsTitle">My bookings</h2><div id="myBookingsList" class="my-bookings-list"></div><button class="btn btn-primary full-btn" id="doneBookings">Done</button></div></div>
+  <script src="app.js"></script>
+</body>
+</html>
